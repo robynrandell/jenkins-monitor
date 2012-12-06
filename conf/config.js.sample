@@ -1,5 +1,8 @@
 var config = {
-	ci_url: 'http://ci.jruby.org/view/Ruboto',
+	ci_url: '',
+	audio: false,
 	jobs_to_be_filtered: [],
-	jobs_to_be_excluded: []
+	jobs_to_be_excluded: [],
+	token: '', // HTTP Basic Auth token
+	refreshInterval: 30000
 }

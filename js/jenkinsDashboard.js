@@ -70,17 +70,22 @@ function soundForCI(data, lastData) {
 }
 $(document).ready(function () {
 
+    if (!config.ci_url) {
+        return;
+    }
     var ci_url = config.ci_url + "/api/json",
         counter = 0,
         lastData = null,
         auto_refresh = setInterval(function () {
             counter++;
-            $.jsonp({
+            $.ajax({
                 url: ci_url + "?format=json&jsonp=?",
                 dataType: "jsonp",
-                // callbackParameter: "jsonp",
                 timeout: 10000,
                 beforeSend: function (xhr) {
+                    if (config.token) {
+                        xhr.setRequestHeader('Authorization', config.token);
+                    }
                     if (counter === 1) {
                         $.blockUI({
                             message: '<h1 id="loading"><img src="img/busy.gif" />loading.....</h1>'
@@ -89,7 +94,9 @@ $(document).ready(function () {
                 },
                 success: function (data, status) {
                     $.unblockUI();
-                    lastData = soundForCI(data, lastData);
+                    if (config.audio) {
+                        lastData = soundForCI(data, lastData);
+                    }
                     jenkinsDashboard.updateBuildStatus(data);
                 },
                 error: function (XHR, textStatus, errorThrown) {
@@ -101,6 +108,6 @@ $(document).ready(function () {
                 }
             });
             soundQueue.play();
-        }, 4000);
+        }, config.refreshInterval || 30000);
 
 });
