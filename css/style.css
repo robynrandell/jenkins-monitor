@@ -11,9 +11,9 @@
 
    article {
        color: #FFF;
-				background-color: gray;
+       background-color: gray;
        float: left;
-				padding: 40px;
+       padding: 40px;
        margin: 20px;
        -moz-box-shadow: 5px 5px 5px #333333;
        -webkit-box-shadow: 5px 5px 11px #333333;
@@ -21,7 +21,7 @@
        -ms-box-shadow: 5px 5px 11px #333333;
        box-shadow: 5px 5px 11px #333333;
        border-radius: 15px;
-				font-size: 2em;
+       font-size: 2em;
    }
 			
 	.disabled, .aborted{
@@ -30,7 +30,6 @@
 		
 .blue {
     background:#749a02;
-    -webkit-animation: greenPulse 4s infinite;
 }
 
 .blue_anime, .red_anime, .yellow_anime, .aborted_anime {
